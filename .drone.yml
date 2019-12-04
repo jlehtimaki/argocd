@@ -42,17 +42,7 @@ steps:
   - name: Manifest
     image: lehtux/kust
     commands:
-      - mkdir -p ~/.ssh
-      - chmod 700 ~/.ssh
-      - echo "Host *\n\tStrictHostKeyChecking no" > ~/.ssh/config
-      - echo $SSH_PRIVATE_KEY_STAGING > ~/.ssh/id_rsa
-      - chmod 600 ~/.ssh/id_rsa
-      - cat ~/.ssh/id_rsa
-      - git clone git@github.com:jlehtimaki/argo_manifests.git
-      - cd argo_manifests/kustomize
-      - kustomize edit set image lehtux/argocd:1.0
-      - git commit -am "Updated image"
-      - git push
+      - echo $CI_COMMIT_SHA
     environment:
       SSH_PRIVATE_KEY_STAGING:
         from_secret: ssh_secret
