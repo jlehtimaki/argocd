@@ -1,0 +1,40 @@
+---
+kind: pipeline
+type: kubernetes
+name: Staging
+
+platform:
+  arch: amd64
+  os: linux
+
+volumes:
+  - name: cache
+    temp: {}
+
+steps:
+  - name: Build
+    image: golang:1.13.0
+    commands:
+      - go test
+      - go build -o main
+    volumes:
+      - name: artifacts
+        path: /go
+    environment:
+      GOARCH: amd64
+      GOOS: linux
+
+
+  - name: release
+    image: plugins/docker
+    settings:
+      tags: latest
+      auto_tag: false
+      repo: lehtux/argocd
+      username:
+        from_secret: username
+      password:
+        from_secret: password
+    volumes:
+      - name: artifacts
+        path: /go
