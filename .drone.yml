@@ -40,8 +40,11 @@ steps:
         path: /go
 
   - name: Manifest
-    image: alpine/git
+    image: lehtux/kust
     commands:
       - git clone https://github.com/jlehtimaki/argo_manifests.git
-      - cd argo_manifests
-      - ls -l
+      - cd argo_manifests/kustomize
+      - kustomize edit set image lehtux/argocd:1.0
+      - git remote set-url origin https://${USERNAME}:${PASSWORD}@github.com/jlehtimaki/argo_manifests.git
+      - git commit -am "Updated image"
+      - git push
