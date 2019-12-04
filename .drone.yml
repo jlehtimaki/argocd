@@ -28,7 +28,7 @@ steps:
   - name: release
     image: plugins/docker
     settings:
-      tags: latest
+      tags: $CI_COMMIT_SHA
       auto_tag: false
       repo: lehtux/argocd
       username:
