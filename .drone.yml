@@ -42,9 +42,8 @@ steps:
   - name: Manifest
     image: lehtux/kust
     commands:
-      - git clone https://github.com/jlehtimaki/argo_manifests.git
+      - git clone git@github.com:jlehtimaki/argo_manifests.git
       - cd argo_manifests/kustomize
       - kustomize edit set image lehtux/argocd:1.0
-      - git remote set-url origin https://${USERNAME}:${PASSWORD}@github.com/jlehtimaki/argo_manifests.git
       - git commit -am "Updated image"
       - git push
