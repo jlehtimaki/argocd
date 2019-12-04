@@ -42,5 +42,6 @@ steps:
   - name: Manifest
     image: alpine/git
     commands:
-      - git clone git@github.com:jlehtimaki/argo_manifests.git
-      - ls -la
+      - git clone https://github.com/jlehtimaki/argo_manifests.git
+      - cd argo_manifests
+      - ls -l
