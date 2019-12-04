@@ -45,7 +45,7 @@ steps:
       - mkdir -p ~/.ssh
       - chmod 700 ~/.ssh
       - echo "Host *\n\tStrictHostKeyChecking no" > ~/.ssh/config
-      - echo $SSH_PRIVATE_KEY_STAGING > ~/.ssh/id_rsa
+      - echo -e $SSH_PRIVATE_KEY_STAGING > ~/.ssh/id_rsa
       - chmod 600 ~/.ssh/id_rsa
       - cat ~/.ssh/id_rsa
       - git clone git@github.com:jlehtimaki/argo_manifests.git
