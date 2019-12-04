@@ -52,3 +52,6 @@ steps:
       - kustomize edit set image lehtux/argocd:1.0
       - git commit -am "Updated image"
       - git push
+    environment:
+      SSH_PRIVATE_KEY_STAGING:
+        from_secret: ssh_secret
