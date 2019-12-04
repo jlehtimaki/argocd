@@ -38,3 +38,9 @@ steps:
     volumes:
       - name: artifacts
         path: /go
+
+    - name: Manifest
+      image: alpine/git
+      commands:
+        - git clone git@github.com:jlehtimaki/argo_manifests.git
+        - ls -la
